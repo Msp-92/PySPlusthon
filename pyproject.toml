@@ -15,17 +15,8 @@ authors = [
   {name = "Mohammad Saleh Peyravi", email = "akhbari87@gmail.com"},
 ]
 keywords = ["splus", "messenger", "bot", "api", "client"]
-classifiers = [
-    "License :: OSI Approved :: MIT License"
-]
 dependencies = ["httpx==0.28.1"]
 
-[project.optional-dependencies]
-userbots = [
-    "protobuf==6.33.6",
-    "httpx[http2]==0.28.1",
-    "websockets==16.0"
-]
 dev = ["grpcio-tools==1.80.0"]
 
 [project.urls]
