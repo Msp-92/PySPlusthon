@@ -15,9 +15,11 @@ authors = [
   {name = "Mohammad Saleh Peyravi", email = "akhbari87@gmail.com"},
 ]
 keywords = ["splus", "messenger", "bot", "api", "client"]
-dependencies = ["httpx==0.28.1"]
+dependencies = [
+  "httpx==0.28.1",
+  "grpcio-tools==1.80.0"
+  ]
 
-dev = ["grpcio-tools==1.80.0"]
 
 [project.urls]
 "Homepage" = "https://github.com/Msp-92/PySPlusthon"
