@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "PySPlusthon"
-version = "0.5.0"
+version = "0.5.1"
 description = "a Python library for Soroush Plus Bot API"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -18,7 +18,7 @@ keywords = ["splus", "messenger", "bot", "api", "client"]
 dependencies = [
   "httpx==0.28.1",
   "grpcio-tools==1.80.0"
-  ]
+]
 
 
 [project.urls]

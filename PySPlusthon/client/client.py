@@ -91,17 +91,11 @@ class Client(Chain, Messages, Updates, Users, Attachments, Chats, InviteLinks, S
         return chat_id
 
     async def connect(self):
-        if self.is_started:
-            raise ConnectionError("Connection is already started")
-        self.is_started = True
         await self.http_connection.start()
         if get_event_loop().is_running():
             self.user = await self.get_me()
 
     async def disconnect(self):
-        if not self.is_started:
-            raise ConnectionError("Connection is already stopped")
-        self.is_started = False
         await self.http_connection.stop()
 
     async def __aenter__(self):
