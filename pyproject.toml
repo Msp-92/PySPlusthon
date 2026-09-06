@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools >= 77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PySPlusthon"
+version = "0.5.0"
+description = "a Python library for Soroush Plus Bot API"
+readme = "README.md"
+requires-python = ">=3.10"
+
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [
+  {name = "Mohammad Saleh Peyravi", email = "akhbari87@gmail.com"},
+]
+keywords = ["splus", "messenger", "bot", "api", "client"]
+classifiers = [
+    "License :: OSI Approved :: MIT License"
+]
+dependencies = ["httpx==0.28.1"]
+
+[project.optional-dependencies]
+userbots = [
+    "protobuf==6.33.6",
+    "httpx[http2]==0.28.1",
+    "websockets==16.0"
+]
+dev = ["grpcio-tools==1.80.0"]
+
+[project.urls]
+"Homepage" = "https://github.com/Msp-92/PySPlusthon"
+"SPlus News Channel" = "https://splus.ir/PySPlusthon"
+"PySPlusthon Developers Group" = "https://splus.ir/PySPlusthonDevelopers"
+
+[tool.setuptools.packages.find]
+include = ["PySPlusthon*"]

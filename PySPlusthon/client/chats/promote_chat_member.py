@@ -1,0 +1,64 @@
+from typing import Union
+
+import PySPlusthon
+
+class PromoteChatMember:
+
+    async def promote_chat_member(
+            self: "PySPlusthon.Client",
+            chat_id: Union[int, str],
+            user_id: Union[int, str],
+            can_edit_messages: bool = None,
+            can_delete_messages: bool = None,
+            can_manage_video_chats: bool = None,
+            can_restrict_members: bool = None,
+            can_promote_members: bool = None,
+            can_change_info: bool = None,
+            can_invite_users: bool = None,
+            can_pin_messages: bool = None,
+            can_send_messages: bool = None,
+            can_send_media_messages: bool = None,
+            can_send_media: bool = None,
+            can_send_gif_stickers: bool = None,
+            can_reply_to_story: bool = None,
+            can_forward_message_from: bool = None,
+            can_send_gift_packet: bool = None,
+            can_start_call: bool = None,
+            can_send_link_message: bool = None,
+            can_send_forwarded_message: bool = None,
+            can_kick_user: bool = None,
+            can_send_message: bool = None,
+            can_see_members: bool = None,
+            can_add_story: bool = None
+    ) -> bool:
+        if self.is_userbot():
+            from PySPlusthon.proto import requests, structs
+            peer_id, peer_type = map(int, chat_id.split("|"))
+            return await self.execute(requests.SetMemberPermissions(
+                group=structs.GroupOutPeer(group_id=peer_id, access_hash=1),
+                user=structs.UserOutPeer(uid=user_id, access_hash=1),
+                permissions=structs.Permissions(
+                    edit_message=can_edit_messages,
+                    delete_message=can_delete_messages,
+                    manage_call=can_manage_video_chats,
+                    change_info=can_change_info,
+                    invite_user=can_invite_users,
+                    pin_message=can_pin_messages,
+                    send_media=can_send_media,
+                    send_gif_stickers=can_send_gif_stickers,
+                    reply_to_story=can_reply_to_story,
+                    forward_message_from=can_forward_message_from,
+                    send_gift_packet=can_send_gift_packet,
+                    start_call=can_start_call,
+                    send_link_message=can_send_link_message,
+                    send_forwarded_message=can_send_forwarded_message,
+                    kick_user=can_kick_user,
+                    send_message=can_send_message,
+                    see_members=can_see_members,
+                    add_story=can_add_story
+                )
+            ))
+
+        chat_id = await self.resolve_peer_id(chat_id)
+        user_id = await self.resolve_peer_id(user_id)
+        return await self.auto_execute("promoteChatMember", locals())

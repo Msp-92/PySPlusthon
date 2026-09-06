@@ -1,0 +1,65 @@
+from typing import Union, List, Tuple
+from copy import deepcopy
+
+from . import Object, ReplyMarkup, InlineKeyboardButton
+from .list import List as PySplusthonList
+from PySPlusthon import objects
+
+
+class InlineKeyboard(ReplyMarkup):
+    def __init__(
+            self,
+            *rows: List[Union["objects.InlineKeyboardButton", Tuple[str, str]]],
+            **kwargs
+    ):
+        super().__init__(**kwargs)
+        if "inline_keyboard" not in kwargs:
+            self.inline_keyboard: List[List["objects.InlineKeyboardButton"]] = PySplusthonList()
+        for row in rows:
+            self.add_row(*row)
+
+    @classmethod
+    def expected_types(cls):
+        expected_types = super().expected_types()
+        expected_types["inline_keyboard"] = List[List[objects.InlineKeyboardButton]]
+        return expected_types
+
+    @classmethod
+    def wrap(cls, raw_object):
+        return Object.wrap.__func__(cls, raw_object)
+
+    def add_button(
+            self,
+            button: Union["objects.InlineKeyboardButton", Tuple[str, str]],
+            row_index: int = -1,
+            button_index: int = -1
+    ):
+        if isinstance(button, tuple):
+            button = InlineKeyboardButton(*button)
+        if button_index == -1:
+            self.inline_keyboard[row_index].append(button)
+        elif button_index < 0:
+            self.inline_keyboard[row_index].insert(button_index + 1, button)
+        else:
+            self.inline_keyboard[row_index].insert(button_index, button)
+
+    def add_row(self, *row: Union["objects.InlineKeyboardButton", Tuple[str, str]], row_index: int = -1):
+        if row_index == -1:
+            self.inline_keyboard.append(PySplusthonList())
+        elif row_index < 0:
+            self.inline_keyboard.insert(row_index + 1, PySplusthonList())
+        else:
+            self.inline_keyboard.insert(row_index, PySplusthonList())
+        for button in row:
+            self.add_button(button, row_index)
+
+    def on_click(self, row_index: int, button_index: int):
+        from ..conditions import click
+        return click(self, row_index, button_index)
+
+    def format(self, *args, **kwargs):
+        markup = deepcopy(self)
+        for i, row in enumerate(markup.inline_keyboard):
+            for j, button in enumerate(row):
+                markup.inline_keyboard[i][j] = button.format(*args, **kwargs)
+        return markup
