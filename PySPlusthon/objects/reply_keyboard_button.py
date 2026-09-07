@@ -24,6 +24,4 @@ class ReplyKeyboardButton(Object):
         button = deepcopy(self)
         if button.text:
             button.text = button.text.format(*args, **kwargs)
-        if button.web_app:
-            button.web_app = button.web_app.format(*args, **kwargs)
         return button

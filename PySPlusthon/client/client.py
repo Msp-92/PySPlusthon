@@ -143,11 +143,8 @@ class Client(Chain, Messages, Updates, Users, Attachments, Chats, InviteLinks, S
                     return await self.http_connection.request(service, json=data)
                 return await self.http_connection.request(service, data=data, files=files)
             except RPCError as error:
-                if error.seconds <= self.sleep_threshold:
-                    print(f"[Too many requests] retry after: {error.seconds} (caused by {service})")
-                    await sleep(error.seconds)
-                else:
-                    raise error
+                print(f"Too many requests (caused by {service})")
+                raise error
 
     async def execute(self, service: str, json: bool = None, **data):
         return await self.execute_http(service, json=json, **data)

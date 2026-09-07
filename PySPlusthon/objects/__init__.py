@@ -36,7 +36,6 @@ from .webhook_info import WebhookInfo
 from .chat_photo import ChatPhoto
 from .invite_link import InviteLink
 from .list import List
-from .copy_text_button import CopyTextButton
 from .poll_option import PollOption
 from .poll import Poll
 from .forward_origin import ForwardOrigin
