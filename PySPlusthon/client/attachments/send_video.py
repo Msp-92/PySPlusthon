@@ -15,7 +15,8 @@ class SendVideo:
             height: int = None,
             caption: str = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> Message:
         video = resolve_media(video)
 

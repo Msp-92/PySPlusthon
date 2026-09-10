@@ -15,7 +15,8 @@ class SendContact:
             last_name: str = None,
             vcard : bytes = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> Message:
         if self.is_userbot():
             from PySPlusthon.proto import requests, structs

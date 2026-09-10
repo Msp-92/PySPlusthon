@@ -14,7 +14,8 @@ class SendAudio:
             duration: int = None,
             title: str = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> Message:
         audio = resolve_media(audio)
 

@@ -24,7 +24,8 @@ class SendAnimation:
             height: int = None,
             caption: str = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> Message:
         animation = resolve_media(animation)
         filename = _extract_filename_media(animation)

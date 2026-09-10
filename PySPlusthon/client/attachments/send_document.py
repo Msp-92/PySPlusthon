@@ -23,7 +23,8 @@ class SendDocument:
             document: Union[str, bytes, BinaryIO, InputMedia],
             caption: str = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> Message:
         document = resolve_media(document)
         filename = _extract_filename(document)

@@ -13,7 +13,8 @@ class SendVoice:
             caption: str = None,
             duration: int = None,
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None,
     ) -> Message:
         voice = resolve_media(voice)
 

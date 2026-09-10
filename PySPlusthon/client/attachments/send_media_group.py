@@ -14,7 +14,8 @@ class SendMediaGroup:
             chat_id: Union[int, str],
             media: List["objects.InputMedia"],
             reply_markup: ReplyMarkup = None,
-            reply_to_message_id: int = None
+            reply_to_message_id: int = None,
+            parse_mode: str = None
     ) -> List[Message]:
         if self.is_userbot():
             from ...proto import requests, structs, enums
