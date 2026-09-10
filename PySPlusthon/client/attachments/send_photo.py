@@ -27,11 +27,8 @@ class SendPhoto:
         photo = resolve_media(photo)
         filename = _extract_filename_media(photo)
         chat_id = await self.resolve_peer_id(chat_id)
-        params = {"chat_id": chat_id, "photo": photo}
-        if caption is not None:
-            params["caption"] = caption
+        data = locals()
+        del data["self"]
         if filename is not None:
-            params["filename"] = filename
-        if parse_mode is not None:
-            params['parse_mode'] = parse_mode
-        return await self.auto_execute("sendPhoto", params)
+            data["filename"] = filename
+        return await self.auto_execute("sendPhoto", data)
