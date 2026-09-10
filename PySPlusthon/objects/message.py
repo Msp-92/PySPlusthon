@@ -248,7 +248,8 @@ class Message(Object):
             width: int = None,
             height: int = None,
             caption: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
         return await self.client.send_animation(
             self.chat.id,
@@ -258,7 +259,7 @@ class Message(Object):
             height,
             caption,
             reply_markup,
-            self.id
+            self.id,parse_mode=parse_mode
         )
 
     async def reply_audio(
@@ -267,55 +268,54 @@ class Message(Object):
             caption: str = None,
             duration: int = None,
             title: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_audio(self.chat.id, audio, caption, duration, title, reply_markup, self.id)
+        return await self.client.send_audio(self.chat.id, audio, caption, duration, title, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply_contact(
             self,
             phone_number: str,
             first_name: str,
             last_name: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_contact(self.chat.id, phone_number, first_name, last_name, reply_markup, self.id)
+        return await self.client.send_contact(self.chat.id, phone_number, first_name, last_name, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply_document(
             self,
             document: Union[str, bytes, BinaryIO, "objects.InputMedia"],
             caption: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_document(self.chat.id, document, caption, reply_markup, self.id)
+        return await self.client.send_document(self.chat.id, document, caption, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply_location(
             self,
             latitude: int,
             longitude: int,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_location(self.chat.id, longitude, latitude, reply_markup, self.id)
+        return await self.client.send_location(self.chat.id, longitude, latitude, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply_media_group(
             self,
-            media: List["objects.InputMedia"]
+            media: List["objects.InputMedia"],
+            parse_mode : str = None,
     ):
-        return await self.client.send_media_group(self.chat.id, media)
+        return await self.client.send_media_group(self.chat.id, media,parse_mode=parse_mode)
 
     async def reply_photo(
             self,
             photo: Union[str, bytes, BinaryIO, "objects.InputMedia"],
             caption: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_photo(self.chat.id, photo, caption, reply_markup, self.id)
-
-    async def reply_sticker(
-            self,
-            sticker: Union[str, bytes, BinaryIO, "objects.InputMedia"],
-            reply_markup: "objects.ReplyMarkup" = None
-    ):
-        return await self.client.send_sticker(self.chat.id, sticker, reply_markup, self.id)
+        return await self.client.send_photo(self.chat.id, photo, caption, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply_video(
             self,
@@ -324,25 +324,28 @@ class Message(Object):
             width: int = None,
             height: int = None,
             caption: str = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_video(self.chat.id, video, duration, width, height, caption, reply_markup)
+        return await self.client.send_video(self.chat.id, video, duration, width, height, caption, reply_markup,parse_mode=parse_mode)
 
     async def reply_voice(
             self,
             voice: Union[str, bytes, BinaryIO, "objects.InputMedia"],
             caption: str = None,
             duration: int = None,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_voice(self.chat.id, voice, caption, duration, reply_markup, self.id)
+        return await self.client.send_voice(self.chat.id, voice, caption, duration, reply_markup, self.id,parse_mode=parse_mode)
 
     async def reply(
             self,
             text: str,
-            reply_markup: "objects.ReplyMarkup" = None
+            reply_markup: "objects.ReplyMarkup" = None,
+            parse_mode : str = None,
     ):
-        return await self.client.send_message(self.chat.id, text, reply_markup, self.id)
+        return await self.client.send_message(self.chat.id, text, reply_markup, self.id,parse_mode=parse_mode)
 
     async def edit_text(
             self,
