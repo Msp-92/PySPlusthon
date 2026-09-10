@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
 ## Key Features
 
-- **Full Bot API Support**: Send messages, photos, videos, documents, audio, voice, stickers, locations, contacts, and more
+- **Full Bot API Support**: Send messages, photos, videos, documents, audio, voice, locations, contacts, and more
 - **Update Handling**: Polling and webhook support with `start_polling()` and `set_webhook()`
 - **Conditional Handlers**: Message filters using conditions (`text`, `command`, `document`, `photo`, `video`, `voice`, and more)
 - **Event Handlers**: Connect, disconnect, initialize, shutdown, edited messages, callback queries, errors, and custom events

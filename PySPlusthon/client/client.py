@@ -17,7 +17,6 @@ from .users import Users
 from .attachments import Attachments
 from .chats import Chats
 from .invite_links import InviteLinks
-from .stickers import Stickers
 from ..objects import Object, wrap, unwrap, Chat, User, Message
 from ..errors import TooManyRequestsError, RPCError
 from ..network import HTTPConnection
@@ -28,7 +27,7 @@ from ..event_handlers import ConnectHandler, DisconnectHandler, InitializeHandle
 
 
 @add_sync_support_to_object
-class Client(Chain, Messages, Updates, Users, Attachments, Chats, InviteLinks, Stickers):
+class Client(Chain, Messages, Updates, Users, Attachments, Chats, InviteLinks):
     WORKDIR = Path(sys.argv[0]).parent
 
     def __init__(

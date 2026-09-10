@@ -35,7 +35,6 @@ from .author import Author as author
 from .equals import Equals as equals
 from .content import content
 from .media_group import media_group
-from .sticker import sticker
 from .number import number
 from .click import Click as click
 from .audio import audio
